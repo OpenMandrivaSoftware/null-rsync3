@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+
+"""
+Null-rsync3: a Python 3 script to create a pseudo copy of a directory, maintaining file structure, names, and permissions, but replacing file content with zeros.
+This script is inspired by null-rsync from Mirrorbrain (https://github.com/poeml/mirrorbrain/blob/master/tools/null-rsync).
+
+Copyright (C) 2023 OpenMandrivaAssociation
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+"""
+
+import os
+import sys
+import shutil
+import smtplib
+from email.mime.text import MIMEText
+from collections import defaultdict
+
+# Email configuration
+# Uncomment and set these to enable email error reporting
+# SMTP_SERVER = 'smtp.example.com'
+# EMAIL_PORT = 587
+# EMAIL_SENDER = 'your-email@example.com'
+# EMAIL_PASSWORD = 'your-password'
+# EMAIL_RECEIVER = 'receiver-email@example.com'
+# MAX_EMAIL_FREQUENCY = 7  # in days
+
+# Store error messages in a dictionary
+errors = defaultdict(list)
+
+
+def create_zeroed_file(path, mode):
+    """
+    Create a file filled with zeros.
+    """
+    with open(path, 'w') as f:
+        os.chmod(path, mode)
+
+
+def copy_structure(src, dst):
+    """
+    Copy directory structure from src to dst, replacing file contents with zeros.
+    """
+    # Iterate over all directories and files in src
+    for dirpath, dirnames, filenames in os.walk(src):
+        dst_dir = os.path.join(dst, os.path.relpath(dirpath, src))
+
+        # Create directories in dst, replicating the structure of src
+        os.makedirs(dst_dir, exist_ok=True)
+
+        # Create zeroed files in dst with the same names and permissions as in src
+        for filename in filenames:
+            src_file = os.path.join(dirpath, filename)
+            dst_file = os.path.join(dst_dir, filename)
+            mode = os.stat(src_file).st_mode & 0o777
+            try:
+                create_zeroed_file(dst_file, mode)
+            except Exception as e:
+                errors[dirpath].append(str(e))
+
+
+def send_email(errors):
+    """
+    Send an email with the collected error messages.
+    """
+    message = '\n'.join(f'{dirpath}: {error}' for dirpath, errors_in_dir in errors.items() for error in errors_in_dir)
+    msg = MIMEText(message)
+    msg['Subject'] = 'Null-rsync3 Error Report'
+    msg['From'] = EMAIL_SENDER
+    msg['To'] = EMAIL_RECEIVER
+
+    server = smtplib.SMTP(SMTP_SERVER, EMAIL_PORT)
+    server.starttls()
+    server.login(EMAIL_SENDER, EMAIL_PASSWORD)
+    server.send_message(msg)
+    server.quit()
+
+
+def main():
+    """
+    Main function: parse arguments and start the directory structure copying.
+    """
+    # Check command line arguments
+    if len(sys.argv) != 3:
+            print(f"Usage: {sys.argv[0]} source_directory target_directory")
+        sys.exit(1)
+
+    src, dst = sys.argv[1], sys.argv[2]
+
+    # Copy the directory structure and collect errors
+    copy_structure(src, dst)
+
+    # If there were any errors, send an email
+    if errors:
+        # Check the last email sent time
+        # Uncomment the following lines to enable the email error reporting
+        """
+        last_email_time_file = 'last_email_time.txt'
+        try:
+            with open(last_email_time_file, 'r') as f:
+                last_email_time = float(f.read())
+        except FileNotFoundError:
+            last_email_time = 0
+
+        current_time = time.time()
+        if current_time - last_email_time > MAX_EMAIL_FREQUENCY * 24 * 60 * 60:
+            send_email(errors)
+            with open(last_email_time_file, 'w') as f:
+                f.write(str(current_time))
+        """
+
+if __name__ == '__main__':
+    main()
