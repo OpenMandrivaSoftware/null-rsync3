@@ -40,39 +40,41 @@ If you encounter issues with null-rsync3, you can enable verbose logging by unco
    ```
    cd null-rsync3
    ```
-3. Copy the sample script and modify it as needed.
+3. Copy the sample script and modify if you want to use email alerts
    ```
    cp null_rsync3.py.sample null_rsync3.py
    ```
-4. Update the script with your rsync source URL and local path.
+4 Run the script.
    ```
-   vim null_rsync3.py
-   ```
-5. Run the script.
-   ```
-   python3 null_rsync3.py
+   python3 null_rsync3.py <rsync_source_url> <local_path>
    ```
 
-## Docker Usage
-1. Clone this repository.
-   ```
-   git clone https://github.com/OpenMandrivaAssociation/null-rsync3.git
-   ```
-2. Navigate to the cloned repository.
-   ```
-   cd null-rsync3
-   ```
-3. Copy the sample Docker Compose file and modify it as needed.
+## Docker Usage (optional)
+
+1. Follow the steps 1 to 3 of the Installation and usage section
+2. Copy the sample Docker Compose file and modify it as needed.
    ```
    cp docker-compose.yml.sample docker-compose.yml
    ```
-4. Update the Docker Compose file with your rsync source URL and local path.
+3. Update the Docker Compose file with your rsync source URL and local path.
    ```
-   nano docker-compose.yml
+   vim docker-compose.yml
    ```
-5. Build the Docker image and run the container.
+4. Build the Docker image and run the container.
    ```
    docker-compose up --build -d
+   ```
+## Update
+
+1. Pull changes
+   ```
+   git pull
+   ```
+2. If applicable, recreate null_rsync.py and docker-compose.py from sample files.
+3. If applicable, update the image
+   ```
+   docker-compose build --pull
+   docker-compose up -d
    ```
 
 ## License
