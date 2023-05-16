@@ -1,10 +1,11 @@
 version: '3.1'
+# Replace <local_path> (line 8) and rsync_source_url (line 10) with you own values
 services:
   null_rsync3:
     build: .
     volumes:
       - .:/app
-      - ./repo-clone:/repo-clone
+      - <local_path>:/repo-clone
     environment:
       - RSYNC_SOURCE_URL=<rsync_source_url>
       - LOCAL_PATH="/repo-clone"
