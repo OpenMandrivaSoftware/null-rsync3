@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+  null_rsync3:
+    build: .
+    volumes:
+      - .:/app
+      - ./repo-clone:/repo-clone
+    environment:
+      - RSYNC_SOURCE_URL=<rsync_source_url>
+      - LOCAL_PATH="/repo-clone"
+    restart: always
