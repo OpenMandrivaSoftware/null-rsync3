@@ -1,6 +1,6 @@
 # null-rsync3
 
-null-rsync3 is a Python script inspired by the original null-rsync tool from Mirrorbrain. Its primary function is to mirror a file tree from a remote source, but unlike traditional mirroring tools, null-rsync3 creates files containing only zeroes, while maintaining file metadata such as names, creation and modification dates, and permissions. This can save significant time and disk space when you need a mirrored file tree for testing purposes, and you don't require the actual file content.
+null-rsync3 is a Python script inspired by the original null-rsync tool from Mirrorbrain. Its primary function is to mirror a file tree from a remote source, but unlike traditional mirroring tools, null-rsync3 creates files containing only zeroes, while maintaining file metadata such as names, creation and modification dates, and permissions. This can save significant time and disk space when you need a mirrored file tree for setting a mirror manager based on filenames, such as OpenMandriva does with Mirrorbits (or for testing purposes), and you don't require the actual file content.
 Features
 
 - Mirrors remote file tree while maintaining file metadata
