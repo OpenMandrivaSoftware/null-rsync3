@@ -4,7 +4,7 @@
 Null-rsync3: a Python 3 script to create a pseudo copy of a directory, maintaining file structure, names, and permissions, but replacing file content with zeros.
 This script is inspired by null-rsync from Mirrorbrain (https://github.com/poeml/mirrorbrain/blob/master/tools/null-rsync).
 
-Copyright (C) 2023 OpenMandrivaAssociation
+Copyright (C) 2023 OpenMandriva Association (https://www.openmandriva.org)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
