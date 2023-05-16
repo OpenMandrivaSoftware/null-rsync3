@@ -30,13 +30,6 @@ Debugging
 
 If you encounter issues with null-rsync3, you can enable verbose logging by uncommenting the appropriate lines in the script. This will provide detailed information about the mirroring process, which can be helpful for troubleshooting.
 
-Bien sûr, voici comment vous pourriez modifier le fichier `README.md` pour inclure ces instructions.
-
----
-
-# null-rsync3
-null-rsync3 is a Python 3 script inspired by Mirrorbrain's null-rsync that mimics rsync behavior, but saves significant amounts of time and diskspace for testing purposes.
-
 ## Installation and Usage
 
 1. Clone this repository.
