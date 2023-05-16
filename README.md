@@ -44,7 +44,7 @@ If you encounter issues with null-rsync3, you can enable verbose logging by unco
    ```
    cp null_rsync3.py.sample null_rsync3.py
    ```
-4 Run the script.
+4. Run the script.
    ```
    python3 null_rsync3.py <rsync_source_url> <local_path>
    ```
