@@ -80,14 +80,6 @@ If you encounter issues with null-rsync3, you can enable verbose logging by unco
 ## License
 This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
 
----
-
-N'oubliez pas de vous assurer que les liens du dépot Git sont corrects et de remplacer tous les exemples de commande avec vos propres détails si nécessaire.
-
-## License
-
-null-rsync3 is released under the GNU General Public License v3.0. It is maintained by the OpenMandriva Association.
-
 ## Acknowledgements
 
 null-rsync3 was inspired by the original null-rsync tool from Mirrorbrain. You can find the original tool here: [Mirrorbrain null-rsync](https://github.com/poeml/mirrorbrain/blob/master/tools/null-rsync)
