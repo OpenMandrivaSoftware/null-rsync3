@@ -78,7 +78,7 @@ If you encounter issues with null-rsync3, you can enable verbose logging by unco
    ```
 
 ## License
-This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details. It’s maintained by the OpenMandriva Association
 
 ## Acknowledgements
 
