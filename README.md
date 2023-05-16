@@ -30,6 +30,65 @@ Debugging
 
 If you encounter issues with null-rsync3, you can enable verbose logging by uncommenting the appropriate lines in the script. This will provide detailed information about the mirroring process, which can be helpful for troubleshooting.
 
+Bien sûr, voici comment vous pourriez modifier le fichier `README.md` pour inclure ces instructions.
+
+---
+
+# null-rsync3
+null-rsync3 is a Python 3 script inspired by Mirrorbrain's null-rsync that mimics rsync behavior, but saves significant amounts of time and diskspace for testing purposes.
+
+## Installation and Usage
+
+1. Clone this repository.
+   ```
+   git clone https://github.com/OpenMandrivaAssociation/null-rsync3.git
+   ```
+2. Navigate to the cloned repository.
+   ```
+   cd null-rsync3
+   ```
+3. Copy the sample script and modify it as needed.
+   ```
+   cp null_rsync3.py.sample null_rsync3.py
+   ```
+4. Update the script with your rsync source URL and local path.
+   ```
+   vim null_rsync3.py
+   ```
+5. Run the script.
+   ```
+   python3 null_rsync3.py
+   ```
+
+## Docker Usage
+1. Clone this repository.
+   ```
+   git clone https://github.com/OpenMandrivaAssociation/null-rsync3.git
+   ```
+2. Navigate to the cloned repository.
+   ```
+   cd null-rsync3
+   ```
+3. Copy the sample Docker Compose file and modify it as needed.
+   ```
+   cp docker-compose.yml.sample docker-compose.yml
+   ```
+4. Update the Docker Compose file with your rsync source URL and local path.
+   ```
+   nano docker-compose.yml
+   ```
+5. Build the Docker image and run the container.
+   ```
+   docker-compose up --build -d
+   ```
+
+## License
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+N'oubliez pas de vous assurer que les liens du dépot Git sont corrects et de remplacer tous les exemples de commande avec vos propres détails si nécessaire.
+
 ## License
 
 null-rsync3 is released under the GNU General Public License v3.0. It is maintained by the OpenMandriva Association.
